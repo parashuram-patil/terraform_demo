@@ -63,3 +63,7 @@ output "printvars" {
 output "printlocalvars" {
   value = "${local.owner}, ${local.role}"
 }
+
+module "tflambdamodule" {
+  source = "./lambda"
+}
