@@ -2,6 +2,23 @@ provider "aws" {
   region = "us-west-1"
 }
 
+variable "maxmemory" {
+  default = 100
+}
+
+variable "maxtimeout" {
+  default = 10
+}
+
+variable "functioname" {
+  default = "test fucntion"
+}
+
+variable "rolename" {
+  default = "test-role"
+  type    = "string"
+}
+
 resource "aws_s3_bucket" "psptfs3bucket" {
   bucket = "psptfs3bucket"
 }
@@ -20,4 +37,8 @@ output "psptfs3bucketdataout" {
 
 output "psptflambdadataout" {
   value = "${data.aws_lambda_function.psptflambdadata.handler}"
+}
+
+output "printvars" {
+  value = "${var.maxtimeout}, ${var.rolename}, ${var.functioname}"
 }
