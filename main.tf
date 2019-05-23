@@ -19,6 +19,11 @@ variable "rolename" {
   type    = "string"
 }
 
+locals {
+  owner = "PSP"
+  role  = "DevOps"
+}
+
 resource "aws_s3_bucket" "psptfs3bucket" {
   bucket = "psptfs3bucket"
 }
@@ -41,4 +46,8 @@ output "psptflambdadataout" {
 
 output "printvars" {
   value = "${var.maxtimeout}, ${var.rolename}, ${var.functioname}"
+}
+
+output "printlocalvars" {
+  value = "${local.owner}, ${local.role}"
 }
