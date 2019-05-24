@@ -17,6 +17,7 @@ resource "aws_db_instance" "tfpspdbinstance" {
   password             = "root12345"
   parameter_group_name = "default.mysql5.7"
   identifier           = "${var.identifier}"
+  skip_final_snapshot  = true
 }
 
 output "endpoint" {
