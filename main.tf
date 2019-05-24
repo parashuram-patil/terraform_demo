@@ -29,7 +29,7 @@ resource "aws_s3_bucket" "psptfs3bucket" {
 }
 
 data "aws_s3_bucket" "psptfs3bucketdata" {
-  bucket = "psptfs3bucket"
+  bucket     = "psptfs3bucket"
   depends_on = ["aws_s3_bucket.psptfs3bucket"]
 }
 
@@ -38,7 +38,7 @@ data "aws_lambda_function" "psptflambdadata" {
 }
 
 output "psptfs3bucketdataout" {
-  value = "${aws_s3_bucket.psptfs3bucket.region}"
+  value      = "${aws_s3_bucket.psptfs3bucket.region}"
   depends_on = ["aws_s3_bucket.psptfs3bucket"]
 }
 
@@ -56,4 +56,13 @@ output "printlocalvars" {
 
 module "tflambdamodule" {
   source = "./lambda"
+}
+
+variable "rdsregion" {}
+variable "rdsidentifier" {}
+
+module "rds" {
+  source     = "./rds"
+  region     = "${var.rdsregion}"
+  identifier = "${var.rdsidentifier}"
 }
