@@ -18,3 +18,7 @@ resource "aws_db_instance" "tfpspdbinstance" {
   parameter_group_name = "default.mysql5.7"
   identifier           = "${var.identifier}"
 }
+
+output "endpoint" {
+  value = "${aws_db_instance.tfpspdbinstance.endpoint}"
+}

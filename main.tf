@@ -66,3 +66,7 @@ module "rds" {
   region     = "${var.rdsregion}"
   identifier = "${var.rdsidentifier}"
 }
+
+output "rdsendpoint" {
+  value = "${module.rds.endpoint}"
+}
