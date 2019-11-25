@@ -1,5 +1,5 @@
 provider "aws" {
-  region = "${var.region}"
+  region = var.region
 }
 
 variable "region" {}
@@ -16,10 +16,10 @@ resource "aws_db_instance" "tfpspdbinstance" {
   username             = "root"
   password             = "root12345"
   parameter_group_name = "default.mysql5.7"
-  identifier           = "${var.identifier}"
+  identifier           = var.identifier
   skip_final_snapshot  = true
 }
 
 output "endpoint" {
-  value = "${aws_db_instance.tfpspdbinstance.endpoint}"
+  value = aws_db_instance.tfpspdbinstance.endpoint
 }

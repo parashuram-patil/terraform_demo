@@ -38,12 +38,12 @@ data "aws_lambda_function" "psptflambdadata" {
 }
 
 output "psptfs3bucketdataout" {
-  value      = "${aws_s3_bucket.psptfs3bucket.region}"
+  value      = aws_s3_bucket.psptfs3bucket.region
   depends_on = ["aws_s3_bucket.psptfs3bucket"]
 }
 
 output "psptflambdadataout" {
-  value = "${data.aws_lambda_function.psptflambdadata.handler}"
+  value = data.aws_lambda_function.psptflambdadata.handler
 }
 
 output "printvars" {
@@ -63,10 +63,10 @@ variable "rdsidentifier" {}
 
 module "rds" {
   source     = "./rds"
-  region     = "${var.rdsregion}"
-  identifier = "${var.rdsidentifier}"
+  region     = var.rdsregion
+  identifier = var.rdsidentifier
 }
 
 output "rdsendpoint" {
-  value = "${module.rds.endpoint}"
+  value = module.rds.endpoint
 }
